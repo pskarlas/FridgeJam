@@ -4,5 +4,5 @@
 class RecipeTag < ApplicationRecord
   self.table_name = "recipes_tags"
   belongs_to :recipe
-  belongs_to :ingredient
+  belongs_to :tag
 end
