@@ -2,5 +2,5 @@
 
 # app/models/recipe.rb
 class Recipe < ApplicationRecord
-  
+  has_many :ingredients
 end
