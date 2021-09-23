@@ -1,10 +1,86 @@
-<p id="notice"><%= notice %></p>
+<div class="max-w-2xl mx-auto bg-white shadow overflow-hidden sm:rounded-lg">
+  <div class="">
+   <img class="object-center object-cover  h-96 w-full rounded-t-md" src="<%= @recipe.image_url %>" alt="<%= @recipe.name %>" title="<%= @recipe.name %>">
+  </div>
+  <div class="flex justify-between items-center px-4 py-5 sm:px-6">
+    <h3 class="text-xl leading-6 font-medium text-gray-900">
+      <%= @recipe.name %>
+    </h3>
+    <%= @recipe.rating_badge %>
+  </div>
+  <div class="border-t border-gray-200">
+    <dl>
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Difficulty
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @recipe.difficulty %>
+        </dd>
+      </div>
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Cooks for
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @recipe.people_quantity %>
+        </dd>
+      </div>
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Prep Time
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @recipe.prep_time %>
+        </dd>
+      </div>
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Cook time
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @recipe.cook_time %>
+        </dd>
+      </div>
+       <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Total Time
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @recipe.total_time %>
+        </dd>
+      </div>
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Budget
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @recipe.budget %>
+        </dd>
+      </div>
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Ingredients
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <ul class="space-y-1">
+            <% @recipe.ingredients.each do |ing| %>
+             <li><%= ing.name %></li>
+            <% end %>
+          </ul>
+        </dd>
+      </div>
 
-<%# link_to 'Edit', edit_recipe_path(@recipe) %>
-<%# link_to 'Back', recipes_path %>
-INGREDIENTS
-<ul>
-<% @recipe.ingredients.each do |ing| %>
- <li><%= ing.name %></li>
-<% end %>
-</ul>
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Author Tip
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @recipe.author_tip %>
+        </dd>
+      </div>
+
+
+    </dl>
+  </div>
+</div>

@@ -4,7 +4,7 @@
 class RecipeDecorator
   attr_reader :recipe, :view_context
 
-  delegate :id, :name, :difficulty, :prep_time, :cook_time, :total_time, :people_quantity, :image, to: :recipe
+  delegate :id, :name, :difficulty, :prep_time, :cook_time, :total_time, :people_quantity, :image, :rate, :budget, :ingredients, :author_tip, to: :recipe
 
   def initialize(recipe, view_context)
     @recipe, @view_context = recipe, view_context
@@ -18,6 +18,21 @@ class RecipeDecorator
       @recipe.image.to_s
       # view_context.image_tag(src: @recipe.image, class: 'h-24 w-32 rounded-md', title: @recipe.name, alt: @recipe.name)
     end
+  end
+
+  def rating_badge
+    if @recipe.rate.blank?
+      view_context.content_tag :span, class: 'border-2 border-sky-100 rounded-lg px-3 py-1.5 max-w-2xl text-sm text-blue-500 flex items-center font-bold' do
+        'no rating'
+      end
+    else
+      view_context.content_tag :span, class: 'border-2 border-sky-100 rounded-lg px-3 py-1.5 max-w-2xl text-sm text-blue-500 flex items-center font-bold' do
+        helpers.svg('/icons/star', class: "h-4 w-4 -ml-0.5  mr-1 text-blue-500")
+        @recipe.rate
+      end
+    end
+
+
   end
 
   def dificulty_badge
