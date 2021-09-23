@@ -2,7 +2,7 @@
 
 # app/models/ingredient.rb
 class Ingredient < ApplicationRecord
-  #Associations
+  # Associations
   belongs_to :recipe
 
   # Callbacks
@@ -13,6 +13,13 @@ class Ingredient < ApplicationRecord
   after_save { self.update_counter_cache }
   after_destroy { self.update_counter_cache }
 
+  # Scopes
+  scope :get_ingredient_ids_from, -> (array_of_strings) {
+    querable_array = array_of_strings.map { |val| "%#{val}%" }
+    ingredient_ids = select('ingredients.id')
+                      .where('ingredients.name ILIKE ANY (array[?])', querable_array)
+  }
+  
   private
 
   def check_if_optional
@@ -24,3 +31,4 @@ class Ingredient < ApplicationRecord
     recipe.save
   end
 end
+Ingredient.select("ingredients.id FROM ingredients WHERE ingredients")

@@ -1,4 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
-<%= link_to 'Back', recipes_path %>
+<%# link_to 'Edit', edit_recipe_path(@recipe) %>
+<%# link_to 'Back', recipes_path %>
+INGREDIENTS
+<ul>
+<% @recipe.ingredients.each do |ing| %>
+ <li><%= ing.name %></li>
+<% end %>
+</ul>
