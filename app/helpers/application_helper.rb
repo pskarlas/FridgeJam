@@ -2,6 +2,7 @@
 
 # app/helpers/application_helper.rb
 module ApplicationHelper
+  include Pagy::Frontend
   # Inline SVG helper
   def svg(filename, options = {})
     file_path = "#{Rails.root}/app/assets/svgs/icons/#{filename}.svg"

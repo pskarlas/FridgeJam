@@ -92,6 +92,7 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.12.4-x86_64-darwin)
       racc (~> 1.4)
+    pagy (4.11.0)
     pg (1.2.3)
     pry (0.14.1)
       coderay (~> 1.1)
@@ -202,6 +203,7 @@ DEPENDENCIES
   byebug
   foreman
   listen (~> 3.3)
+  pagy (~> 4.11)
   pg (~> 1.1)
   pry (~> 0.14.1)
   puma (~> 5.0)

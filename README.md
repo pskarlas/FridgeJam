@@ -1,1 +1,1 @@
-# my_fridge_recipes
+# FridgeJam

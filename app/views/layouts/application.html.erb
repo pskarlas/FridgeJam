@@ -12,9 +12,9 @@
 
   <body class="antialiased">
     <%= render partial: 'partials/header' %>
-    <main class="container mx-auto pt-20 pb-24">
+    <main class="container mx-auto pt-20 pb-6">
       <%= yield %>
     </main>
-    <footer class="container mx-auto"></footer>
+     <%= render partial: 'partials/footer' %>
   </body>
 </html>
