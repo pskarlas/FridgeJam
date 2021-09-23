@@ -2,6 +2,7 @@
 
 # app/decorators/recipe_decorator.rb
 class RecipeDecorator
+  include ApplicationHelper
   attr_reader :recipe, :view_context
 
   delegate :id, :name, :difficulty, :prep_time, :cook_time, :total_time, :people_quantity, :image, :rate, :budget, :ingredients, :author_tip, to: :recipe
@@ -11,24 +12,18 @@ class RecipeDecorator
   end
 
   def image_url
-    if @recipe.image.blank?
-      view_context.image_path('recipe-placeholder.png')
-      # view_context.image_tag(src: 'recipe-placeholder.png', class: 'h-24 w-32 rounded-md', title: @recipe.name, alt: @recipe.name)
-    else
-      @recipe.image.to_s
-      # view_context.image_tag(src: @recipe.image, class: 'h-24 w-32 rounded-md', title: @recipe.name, alt: @recipe.name)
-    end
+    return view_context.image_path('recipe-placeholder.png') if @recipe.image.blank?
+    @recipe.image.to_s
   end
 
   def rating_badge
     if @recipe.rate.blank?
-      view_context.content_tag :span, class: 'border-2 border-sky-100 rounded-lg px-3 py-1.5 max-w-2xl text-sm text-blue-500 flex items-center font-bold' do
+      view_context.content_tag :span, class: 'uppercase border-2 border-gray-200 rounded-lg px-3 py-1.5 max-w-2xl text-xs text-gray-400 flex items-center font-bold' do
         'no rating'
       end
     else
       view_context.content_tag :span, class: 'border-2 border-sky-100 rounded-lg px-3 py-1.5 max-w-2xl text-sm text-blue-500 flex items-center font-bold' do
-        helpers.svg('/icons/star', class: "h-4 w-4 -ml-0.5  mr-1 text-blue-500")
-        @recipe.rate
+        @recipe.rate.to_s
       end
     end
 

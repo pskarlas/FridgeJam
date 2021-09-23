@@ -1,4 +1,4 @@
-<header class="bg-gradient-to-r from-orange-300 to-rose-300 pt-32 pb-20">
+<header class="bg-gradient-to-r from-orange-300 to-rose-300 pt-20 pb-40">
   <section class="container mx-auto flex flex-col items-center space-y-4">
     <div>
       <a href="/">
@@ -13,15 +13,15 @@
     <div class="w-full max-w-lg">
       <%= form_tag(searches_path, method: :get) do %>
         <label for="search" class="sr-only">Recipe search</label>
-        <div class="mt-1 relative flex items-center">
-          <%= text_field_tag(:query, params[:query], class: 'shadow focus:ring-indigo-500 focus:border-indigo-500 block w-full pr-12 sm:text-sm border-gray-300 rounded-md py-4', required: true) %>
-          <div class="absolute inset-y-0 right-0 flex py-1.5 pr-1.5">
-              <%= button_tag 'Search', name: nil, class: "inline-flex items-center border border-transparent rounded px-3 text-sm font-sans font-medium text-white bg-sky-400 hover:bg-sky-500 hover:cursor-pointer transition ease-in-out duration-300 " %>
-          </div>
-        </div>
-        <p class="mt-2 text-sm text-white">
+        <p class="mb-2 text-sm text-white font-medium">
           Write the ingredients comma seperated e.g. orange, porc
         </p>
+        <div class="relative flex items-center">
+          <%= text_field_tag(:query, params[:query], class: 'shadow focus:ring-orange-500 focus:border-orange-500 block w-full pr-12 sm:text-sm border-gray-300 rounded-md py-4', required: true) %>
+          <div class="absolute inset-y-0 right-0 flex py-1.5 pr-1.5">
+              <%= button_tag 'Search', name: nil, class: "inline-flex items-center border border-transparent rounded px-3 text-sm font-sans font-medium text-white bg-orange-500 hover:bg-orange-400 hover:cursor-pointer transition ease-in-out duration-300 " %>
+          </div>
+        </div>
       <% end%>
     </div>
   </section>

@@ -9,7 +9,7 @@ class SearchesController < ApplicationController
       @recipes = Recipe.search_by_ingredients(array_of_strings)
       @recipes = @recipes.map{ |recipe| RecipeDecorator.new(recipe, view_context)}
     else
-      @recipes = Recipe.order("nb_comments DESC").first(10)
+      @recipes = Recipe.order("nb_comments DESC").first(5)
       @top_recipes = @recipes.map{ |recipe| RecipeDecorator.new(recipe, view_context)}
     end
   end

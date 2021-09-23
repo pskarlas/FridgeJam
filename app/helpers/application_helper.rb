@@ -4,7 +4,7 @@
 module ApplicationHelper
   # Inline SVG helper
   def svg(filename, options = {})
-    file_path = "#{Rails.root}/app/assets/svgs/#{filename}.svg"
+    file_path = "#{Rails.root}/app/assets/svgs/icons/#{filename}.svg"
     if File.exist?(file_path)
       file = File.read(file_path).html_safe
       doc  = Nokogiri::HTML::DocumentFragment.parse file
