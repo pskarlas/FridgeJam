@@ -28,4 +28,5 @@ class Recipe < ApplicationRecord
       .group('recipes.id')
       .having("COUNT(ingredients.id) = recipes.mandatory_ingredients_count", ingredient_ids)
   }
+
 end

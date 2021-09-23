@@ -26,7 +26,8 @@ module.exports = {
         teal: colors.teal,
         sky: colors.sky,
         emerald: colors.emerald,
-
+        lime: colors.lime,
+        orange: colors.orange
       },
       fontFamily: {
         'osans': ['"Open Sans"', 'sans-serif'],

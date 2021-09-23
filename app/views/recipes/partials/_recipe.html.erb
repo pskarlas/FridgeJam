@@ -1,0 +1,39 @@
+<li class="py-4 ">
+  <%= link_to recipe_path(recipe.id), class: " flex items-center space-x-4" do %>
+
+      <div class="flex-shrink-0 bg-gray-50">
+        <img class="object-center object-cover  h-24 w-32 rounded-md" src="<%= recipe.image_url %>" alt="<%= recipe.name %>" title="<%= recipe.name %>">
+      </div>
+      <div class="flex-1 min-w-0  space-y-1">
+        <%= recipe.dificulty_badge %>
+        <div class="">
+          <p class="text-lg font-medium text-gray-900 truncate">
+            <%= recipe.name %>
+          </p>
+          <div class="text-sm text-gray-500 truncate">
+            <span class="">
+              <%= recipe.prep_time %>
+            </span>
+            &middot;
+            <span class="">
+              <%= recipe.cook_time %>
+            </span>
+            &middot;
+            <span class="">
+              <%= recipe.total_time %>
+            </span>
+            &middot;
+            <span class="">
+              <%= recipe.people_quantity %>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <span class="inline-flex items-center shadow-sm px-2.5 py-0.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50">
+          View
+        </span>
+      </div>
+
+  <% end %>
+</li>

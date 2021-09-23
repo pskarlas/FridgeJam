@@ -5,10 +5,12 @@ class SearchesController < ApplicationController
 
   def index
     if params[:query].present?
-      array_of_strings = params[:query].split(',').reject(&:blank?).map(&:strip)
+      array_of_strings = params[:query].split(',').push('poivre', 'sel').reject(&:blank?).map(&:strip)
       @recipes = Recipe.search_by_ingredients(array_of_strings)
+      @recipes = @recipes.map{ |recipe| RecipeDecorator.new(recipe, view_context)}
     else
-      @recipes = Recipe.first(5)
+      @recipes = Recipe.order("nb_comments DESC").first(10)
+      @top_recipes = @recipes.map{ |recipe| RecipeDecorator.new(recipe, view_context)}
     end
   end
 
