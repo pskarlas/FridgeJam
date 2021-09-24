@@ -7,17 +7,17 @@ Check out 🍴 [FridgeJam] on Heroku.
 
 ## User Stories
 
-- As a **Visitor** \
+- As a **Visitor**\
   I want to **be able to search for all recipes by exact ingredients**\
-  so that **I can cook with ingredients I currently have** \
+  so that **I can cook with ingredients I currently have**
 
 - As a **Visitor**\
   I want to **be able to see a recipes details**\
-  so that **I can decide what to cook**\
+  so that **I can decide what to cook**
 
 - As a **Visitor**\
   I want to **be able to see a TOP10 rated recipes**\
-  so that **I can pick a best rated recipe**\
+  so that **I can pick a best rated recipe**
 
 
 
