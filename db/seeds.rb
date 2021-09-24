@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Seed the database with recipies.
-File.readlines('./lib/assets/recipes/recipes.json').each do |line|
+File.readlines('./lib/assets/recipes/recipes.json').first(1500).each do |line|
   # Parse each file line as json
   json_recipe = JSON.parse line
   # Create recipe

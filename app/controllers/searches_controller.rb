@@ -2,7 +2,7 @@
 
 # app/controllers/searches_controller.rb
 class SearchesController < ApplicationController
-  rescue_from Pagy::OverflowError, with: :redirect_to_last_page
+  rescue_from Pagy::OverflowError, with: :redirect_to_homepage
 
   def index
     if params[:query].present? && !params[:query].strip.blank?
@@ -14,11 +14,6 @@ class SearchesController < ApplicationController
       @top_recipes = top10_recipes.map{ |recipe| RecipeDecorator.new(recipe, view_context)}
       @pagy, @top_recipes = pagy_array(@top_recipes, items: 5, size: [1, 2, 1, 1])
     end
-  end
-
-  def new
-    array_of_strings = search_params[:query].split(',').map(&:strip)
-    ingredient_ids = Ingredient.get_ingredient_ids_from(array_of_strings) 
   end
 
   private
@@ -39,7 +34,7 @@ class SearchesController < ApplicationController
     Recipe.where.not(rate: nil).order("rate DESC, nb_comments DESC").first(10)
   end
 
-  def redirect_to_last_page(exception)
+  def redirect_to_homepage(exception)
     redirect_to(
       url_for(page: exception.pagy.last),
       notice: "Recipes page #{params[:page]} was not found. I have therefore redirected you to homepage."
