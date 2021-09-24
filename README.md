@@ -2,7 +2,7 @@
 
 # FridgeJam
 
-Search for recipes containing only the ingredients you have in fridge.
+Search for recipes containing only the ingredients you have in fridge.\
 Check out 🍴 [FridgeJam] on Heroku.
 
 ## User Stories
@@ -28,3 +28,4 @@ Check out 🍴 [FridgeJam] on Heroku.
 
 [//]: # (Reference links)
    [FridgeJam]: <https://morning-ocean-80919.herokuapp.com>
+
