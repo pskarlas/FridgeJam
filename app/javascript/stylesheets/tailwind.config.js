@@ -31,9 +31,6 @@ module.exports = {
       },
       fontFamily: {
         'osans': ['"Open Sans"', 'sans-serif'],
-        'nsans': ['"Noto Sans"', 'sans-serif'],
-        'quick': ['Quicksand', 'sans-serif'],
-        'pn': ['proxima-nova', 'sans-serif']
       },
       animation: {
          'spin-fast': 'spin 0.4s linear infinite',

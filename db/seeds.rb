@@ -32,10 +32,3 @@ File.readlines('./lib/assets/recipes/recipes.json').first(100).each do |line|
 
 end
 
-# MATCHES 1 h, 1h,
-#(\d{1})\s\w{1}\z
-#(\d{1})\w{1}\z
-
-# MATCHES 15min 5 min
-# (\d{1,2})\min\z
-# (\d{1,2})\s\min\z
