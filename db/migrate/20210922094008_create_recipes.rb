@@ -2,7 +2,7 @@ class CreateRecipes < ActiveRecord::Migration[6.1]
   def change
     create_table :recipes do |t|
       t.string  :name, null: false
-      t.float   :rate
+      t.float   :rate, precision: 2, scale: 1
       t.string  :author_tip
       t.string  :budget
       t.string  :prep_time

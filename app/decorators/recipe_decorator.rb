@@ -5,7 +5,7 @@ class RecipeDecorator
   include ApplicationHelper
   attr_reader :recipe, :view_context
 
-  delegate :id, :name, :difficulty, :prep_time, :cook_time, :total_time, :people_quantity, :image, :rate, :budget, :ingredients, :author_tip, to: :recipe
+  delegate :id, :nb_comments, :slug, :name, :difficulty, :prep_time, :cook_time, :total_time, :people_quantity, :image, :rate, :budget, :ingredients, :author_tip, to: :recipe
 
   def initialize(recipe, view_context)
     @recipe, @view_context = recipe, view_context

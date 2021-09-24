@@ -20,20 +20,20 @@ class SearchesController < ApplicationController
 
   private
 
-  def search_params
-    params.require(:search).permit(:query)
-  end
-
+  # Transfrom query param to an array of string values
+  # and add 'poivre' and 'sel'. Who doesn't have poivre & sel?
   def transform_query_param(query)
-    query.split(',').push('poivre', 'sel').reject(&:blank?).map(&:strip)
+    query.split(',').reject(&:blank?).map(&:strip).push('poivre', 'sel')
   end
 
+  # Search for Recipes given an array of ingredients
   def search_recipes(ingredients_array)
     Recipe.search_by_ingredients(ingredients_array)
       .map{ |recipe| RecipeDecorator.new(recipe, view_context)}
   end
 
+  # Get TOP10 recipes
   def top10_recipes
-    Recipe.order("nb_comments DESC").first(10)
+    Recipe.where.not(rate: nil).order("rate DESC, nb_comments DESC").first(10)
   end
 end

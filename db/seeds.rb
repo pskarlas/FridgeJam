@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Seed the database with recipies.
-File.readlines('./lib/assets/recipes/recipes.json').each do |line|
+File.readlines('./lib/assets/recipes/recipes.json').first(100).each do |line|
   # Parse each file line as json
   json_recipe = JSON.parse line
   # Create recipe
@@ -31,3 +31,11 @@ File.readlines('./lib/assets/recipes/recipes.json').each do |line|
   end
 
 end
+
+# MATCHES 1 h, 1h,
+#(\d{1})\s\w{1}\z
+#(\d{1})\w{1}\z
+
+# MATCHES 15min 5 min
+# (\d{1,2})\min\z
+# (\d{1,2})\s\min\z

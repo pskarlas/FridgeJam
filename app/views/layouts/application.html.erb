@@ -1,8 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MyFridgeRecipes</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta name="author" content="FridgeJam" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <% if content_for?(:meta) %>
+      <%= yield(:meta) %>
+    <% else %>
+      <title> Welcome | FridgeJam.gr &middot; Fridge powered recipes!</title>
+      <meta name="description" content="Fridge powered recipes!">
+      <meta name="keywords" content="recipes, tasty dishes, fridge powered recipes">
+    <% end %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -12,9 +22,12 @@
 
   <body class="antialiased">
     <%= render partial: 'partials/header' %>
-    <main class="container mx-auto pt-20 pb-6">
+    <main class="flex flex-col  pt-20 pb-6">
       <%= yield %>
     </main>
-     <%= render partial: 'partials/footer' %>
+    <%= render partial: 'partials/footer' %>
+    <% if content_for(:js) %>
+      <%= yield(:js) %>
+    <% end %>
   </body>
 </html>
