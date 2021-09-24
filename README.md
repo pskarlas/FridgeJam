@@ -10,6 +10,10 @@ Check out 🍴 [FridgeJam] on Heroku.
 - As a **Visitor**\
   I want to **be able to search for all recipes by exact ingredients**\
   so that **I can cook with ingredients I have in fridge**
+  
+- As a **Visitor**\
+  I want to **be able to filter recipes by min people and portions**\
+  so that **I can pick the most suitable**
 
 - As a **Visitor**\
   I want to **be able to see a recipes details**\
