@@ -1,8 +1,3 @@
 
 .pagy-nav .page.active,
 .pagy-nav-js .page.active { @apply font-bold }
-
-.pagy-combo-nav-js .page.prev.disabled,
-.pagy-combo-nav-js .page.next.disabled {
-  @apply text-blue-500
-}

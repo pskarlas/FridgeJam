@@ -25,13 +25,9 @@ module.exports = {
         lime: colors.lime,
         orange: colors.orange
       },
-      fontFamily: {
-        'osans': ['"Open Sans"', 'sans-serif'],
-      },
       animation: {
          'spin-fast': 'spin 0.4s linear infinite',
       }
-
     },
   },
   variants: {

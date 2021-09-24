@@ -7,11 +7,14 @@ class Ingredient < ApplicationRecord
 
   # Callbacks
   after_create do 
-    self.check_if_optional()
-    self.update_counter_cache
+    check_if_optional()
+    update_recipe_counter
   end
-  after_save { self.update_counter_cache }
-  after_destroy { self.update_counter_cache }
+
+  # In case we decide
+  # we want to update/delete ingredients
+  after_save    { self.update_recipe_counter }
+  after_destroy { self.update_recipe_counter }
 
   # Scopes
   scope :get_ingredient_ids_from, -> (array_of_strings) {
@@ -26,9 +29,8 @@ class Ingredient < ApplicationRecord
     update_attribute(:optional, true) if name.match(/optionnel/)
   end
   
-  def update_counter_cache
+  def update_recipe_counter
     recipe.mandatory_ingredients_count = Ingredient.where(optional: false, recipe_id: recipe.id).count
     recipe.save
   end
 end
-Ingredient.select("ingredients.id FROM ingredients WHERE ingredients")

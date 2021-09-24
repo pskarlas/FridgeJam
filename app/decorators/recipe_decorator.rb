@@ -11,6 +11,10 @@ class RecipeDecorator
     @recipe, @view_context = recipe, view_context
   end
 
+  def total_time
+    @recipe.total_time.to_i
+  end
+
   def image_url
     return view_context.image_path('recipe-placeholder.png') if @recipe.image.blank?
     @recipe.image.to_s
@@ -26,8 +30,6 @@ class RecipeDecorator
         @recipe.rate.to_s
       end
     end
-
-
   end
 
   def dificulty_badge
