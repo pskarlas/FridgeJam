@@ -12,15 +12,19 @@ class Recipe < ApplicationRecord
   before_create :import_actions
 
   # Scopes
-  scope :search_by_ingredients, -> (ingredients_array) {
+  scope :search_by_ingredients, -> (ingredients_array, people, max_time) {
     querable_array = ingredients_array.map { |val| "%#{val}%" }
     ingredient_ids = Ingredient
                       .where('ingredients.name ILIKE ANY (array[?])', querable_array)
                       .pluck(:id)
     joins(:ingredients)
-      .where("ingredients.optional = false AND ingredients.id IN (?)", ingredient_ids)
+      .where('ingredients.optional = false
+              AND ingredients.id IN (?)
+              AND recipes.people_quantity >= ?
+              AND CAST(recipes.total_time AS INT) <= ?',
+              ingredient_ids, people, max_time)
       .group('recipes.id')
-      .having("COUNT(ingredients.id) = recipes.mandatory_ingredients_count")
+      .having('COUNT(ingredients.id) = recipes.mandatory_ingredients_count')
   }
 
   def import_actions

@@ -6,8 +6,10 @@ class SearchesController < ApplicationController
 
   def index
     if params[:query].present? && !params[:query].strip.blank?
+      @people = params[:people] || 0
+      @max_ttl_time = params[:total_time] || 200000
       ingredients_array = transform_query_param(params[:query].strip)
-      @recipes = search_recipes(ingredients_array).map{ |recipe| RecipeDecorator.new(recipe, view_context)}
+      @recipes = search_recipes(ingredients_array, @people, @max_ttl_time).map{ |recipe| RecipeDecorator.new(recipe, view_context)}
       @recipes_count = @recipes.size
       @pagy, @recipes = pagy_array(@recipes, items: 10, size: [1, 2, 1, 1])
     else
@@ -25,8 +27,8 @@ class SearchesController < ApplicationController
   end
 
   # Search for Recipes given an array of ingredients
-  def search_recipes(ingredients_array)
-    Recipe.search_by_ingredients(ingredients_array)
+  def search_recipes(ingredients_array, people, max_ttl_time)
+    Recipe.search_by_ingredients(ingredients_array, people, max_ttl_time)
   end
 
   # Get TOP10 recipes
