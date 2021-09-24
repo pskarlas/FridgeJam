@@ -23,7 +23,8 @@ Check out 🍴 [FridgeJam] on Heroku.
 
 ## DB Schema (postgresql)
 
-![schema](https://user-images.githubusercontent.com/12958182/134681340-818438d1-80da-468e-8095-260c289d780f.png)
+![schemarb](https://user-images.githubusercontent.com/12958182/134682570-956bf8a7-0bee-40e1-9fd2-9b63445704c7.png)
+
 
 [//]: # (Reference links)
    [FridgeJam]: <https://morning-ocean-80919.herokuapp.com>
