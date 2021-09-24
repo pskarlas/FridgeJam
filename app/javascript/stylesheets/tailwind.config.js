@@ -3,20 +3,16 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  purge: {
-    enabled: ["production", "staging"].includes(process.env.NODE_ENV),
-    content: [
-      './app/**/*.html.erb',
-      './app/decorators/*.rb',
-      './app/components/*.html.erb',
-      './app/components/*.rb',
-      './app/components/**/*.html.erb',
-      './app/components/**/*.rb',
-      './app/helpers/**/*.rb',
-      './app/javascript/**/*.js',
-      './app/javascript/**/*.vue',
-    ],
-  },
+  purge: [
+    './app/**/*.html.erb',
+    './app/components/*.html.erb',
+    './app/components/*.rb',
+    './app/components/**/*.html.erb',
+    './app/components/**/*.rb',
+    './app/helpers/**/*.rb',
+    './app/javascript/**/*.js',
+    './app/javascript/**/*.vue',
+  ],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
