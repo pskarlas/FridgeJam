@@ -19,10 +19,9 @@
         <div class="relative flex flex-col items-start justify-start space-y-2">
           <%= text_area_tag :query, params[:query], class: 'w-full shadow focus:ring-orange-500 focus:border-orange-500 block w-full pl-4 sm:text-sm border-gray-300 rounded-md py-4', :rows => 5, required: true %>
           <%= label_tag :people, 'Min people', class: "text-white text-sm" %>
-          <%= select_tag :people, raw("<option value='1'>for 1 person</option><option value='2'>2 persons</option><option value='3'>3 persons</option><option value='4'>4 persons</option><option value='5'>5+ persons</option>"), class: 'block w-full py-3 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md' %>
+          <%= select_tag :people, raw("<option value='0'>I dont' care</option><option value='2'>2 people</option><option value='4'>4 people</option><option value='6'>6 people</option>"), class: 'block w-full py-3 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md' %>
           <%= label_tag :total_time, 'Max recipe time', class: "text-white text-sm" %>
-          <%= select_tag :total_time, raw("<option value='30'>30mins</option><option value='60'>60 mins</option><option value='120'>2 hours</option><option value='180'>3 hours</option><option value='20000'>I don't care</option>"), class: 'block w-full py-3 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md' %>
-
+          <%= select_tag :total_time, raw("<option value='20000'>I don't care</option><option value='30'>30mins</option><option value='60'>60 mins</option><option value='120'>2 hours</option><option value='180'>3 hours</option>"), class: 'block w-full py-3 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md' %>
         </div>
         <%= button_tag 'Search', name: nil, class: "inline-block mt-2 py-2 w-full  items-center border border-transparent rounded px-3 text-sm font-sans font-medium text-white bg-orange-500 hover:bg-orange-400 hover:cursor-pointer transition ease-in-out duration-300 " %>
       <% end%>
