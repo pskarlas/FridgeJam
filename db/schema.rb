@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_23_161037) do
+ActiveRecord::Schema.define(version: 2021_09_27_131834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2021_09_23_161037) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "optional", default: false
+    t.index "to_tsvector('french'::regconfig, (name)::text)", name: "ingredients_idx", using: :gin
     t.index ["recipe_id"], name: "index_ingredients_on_recipe_id"
   end
 
@@ -41,6 +42,8 @@ ActiveRecord::Schema.define(version: 2021_09_23_161037) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "mandatory_ingredients_count", default: 0
     t.string "slug", null: false
+    t.index ["people_quantity"], name: "index_recipes_on_people_quantity"
+    t.index ["total_time"], name: "index_recipes_on_total_time"
   end
 
   create_table "recipes_tags", id: false, force: :cascade do |t|
