@@ -34,6 +34,4 @@ class Recipe < ApplicationRecord
     self.total_time = calculate_ttl_cook_time(self.total_time)
   end
 
-
-
 end
