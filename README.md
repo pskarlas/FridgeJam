@@ -8,19 +8,23 @@ Check out 🍴 [FridgeJam] on Heroku.
 ## User Stories
 
 - As a **Visitor**\
-  I want to **be able to search for all recipes by exact ingredients**\
+  I want to **search for all recipes by exact ingredients**\
   so that **I can cook with ingredients I have in fridge**
   
 - As a **Visitor**\
-  I want to **be able to filter recipes by min people and portions**\
+  I want to **filter recipes by min portions**\
+  so that **I can pick the most suitable**
+  
+- As a **Visitor**\
+  I want to **filter recipes by max time**\
   so that **I can pick the most suitable**
 
 - As a **Visitor**\
-  I want to **be able to see a recipes details**\
+  I want to **see recipe details**\
   so that **I can decide what to cook**
 
 - As a **Visitor**\
-  I want to **be able to see a TOP10 rated recipes**\
+  I want to **be able to see TOP10 rated recipes**\
   so that **I can pick a best rated recipe**
 
 
