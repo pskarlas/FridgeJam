@@ -16,6 +16,8 @@ class Recipe < ApplicationRecord
     ingredients_string_clause =  String.new
     ingredients_length = ingredients_array.size
     create_ingredients_clause = ingredients_array.each_with_index do |ingr, i|
+      # Get rid of apostrophes
+      ingr = ingr.tr(?', ' ')
       ingredients_string_clause << "(ingredients.tsv_name @@ plainto_tsquery('#{ingr}'))"
       ingredients_string_clause << ' OR ' if i < ingredients_length - 1
     end
