@@ -14,9 +14,7 @@ class Recipe < ApplicationRecord
   # Scopes
   scope :search_by_ingredients, -> (ingredients_array, people, max_time) {
     querable_array = ingredients_array.map { |val| "%#{val}%" }
-    ingredient_ids = Ingredient
-                      .where('ingredients.name ILIKE ANY (array[?])', querable_array)
-                      .pluck(:id)
+    ingredient_ids = Ingredient.where('ingredients.name ILIKE ANY (array[?])', querable_array).pluck(:id)
     joins(:ingredients)
       .where('ingredients.optional = false
               AND ingredients.id IN (?)
