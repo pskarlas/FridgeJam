@@ -14,3 +14,10 @@ ActiveStorage.start()
 
 import "controllers"
 import "stylesheets/application.scss"
+
+document.addEventListener("turbolinks:load", () => {
+  document.getElementById('searchForm').addEventListener('submit', showSpinner);
+  function showSpinner(){
+    document.getElementById('spinner').classList.remove('hidden')
+  }
+})

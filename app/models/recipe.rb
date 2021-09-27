@@ -15,18 +15,17 @@ class Recipe < ApplicationRecord
   scope :search_by_ingredients, -> (ingredients_array, people, max_time) {
     querable_array = ingredients_array.map { |val| "%#{val}%" }
 
-    Recipe.find_by_sql(["
-      SELECT r.* FROM recipes r
-      INNER JOIN (
-                  SELECT ingredients.id, ingredients.recipe_id
-                  FROM ingredients
-                  WHERE ingredients.id IN (SELECT ingredients.id FROM ingredients
-                                          WHERE (ingredients.name ILIKE ANY (array[?])) AND ingredients.optional = false)
-                        ) q_1 ON r.id = q_1.recipe_id
-                  WHERE r.people_quantity >= ? AND CAST(r.total_time AS int) <= ?
-                  GROUP BY r.id
-                  HAVING COUNT(q_1.id) = r.mandatory_ingredients_count
-    ", querable_array, people, max_time])
+    Recipe.find_by_sql(["SELECT r.* FROM recipes r
+                         INNER JOIN (
+                         SELECT ingredients.id, ingredients.recipe_id
+                         FROM ingredients
+                         WHERE ingredients.id IN (SELECT ingredients.id FROM ingredients
+                                                  WHERE (ingredients.name ILIKE ANY (array[?])) AND ingredients.optional = false)
+                          ) q_1 ON r.id = q_1.recipe_id
+                         WHERE r.people_quantity >= ? AND CAST(r.total_time AS int) <= ?
+                         GROUP BY r.id
+                         HAVING COUNT(q_1.id) = r.mandatory_ingredients_count",
+                         querable_array, people, max_time])
   }
 
   def import_actions
