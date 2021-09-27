@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Helper methods for imprting recipes
+# Helper methods for importing recipes
 module RecipeImportHelper
 
   def calculate_ttl_cook_time(string)
