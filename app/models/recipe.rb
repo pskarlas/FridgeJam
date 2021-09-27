@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 # app/models/recipe.rb
 class Recipe < ApplicationRecord
@@ -12,14 +13,14 @@ class Recipe < ApplicationRecord
 
   # Scopes
   scope :search_by_ingredients, -> (ingredients_array, people, max_time) {
-    ingredients_string_clause = ''
+    ingredients_string_clause =  String.new
     ingredients_length = ingredients_array.size
     create_ingredients_clause = ingredients_array.each_with_index do |ingr, i|
       ingredients_string_clause << "(ingredients.tsv_name @@ plainto_tsquery('#{ingr}'))"
       ingredients_string_clause << ' OR ' if i < ingredients_length - 1
     end
 
-    Recipe.find_by_sql(["
+    find_by_sql(["
       SELECT r.* FROM recipes r
       INNER JOIN (
         SELECT ingredients.id, ingredients.recipe_id
@@ -31,21 +32,6 @@ class Recipe < ApplicationRecord
       GROUP BY r.id
       HAVING COUNT(q_1.id) = r.mandatory_ingredients_count
     ", people, max_time])
-
-
-    # querable_array = ingredients_array.map { |val| "%#{val}%" }
-
-    # Recipe.find_by_sql(["SELECT r.* FROM recipes r
-    #                      INNER JOIN (
-    #                      SELECT ingredients.id, ingredients.recipe_id
-    #                      FROM ingredients
-    #                      WHERE ingredients.id IN (SELECT ingredients.id FROM ingredients
-    #                                               WHERE (ingredients.name ILIKE ANY (array[?])) AND ingredients.optional = false)
-    #                       ) q_1 ON r.id = q_1.recipe_id
-    #                      WHERE r.people_quantity >= ? AND CAST(r.total_time AS int) <= ?
-    #                      GROUP BY r.id
-    #                      HAVING COUNT(q_1.id) = r.mandatory_ingredients_count",
-    #                      querable_array, people, max_time])
   }
 
   def import_actions

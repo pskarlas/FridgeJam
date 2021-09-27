@@ -7,14 +7,10 @@ class Ingredient < ApplicationRecord
 
   # Callbacks
   after_create do 
-    check_if_optional()
+    check_if_optional
     update_recipe_counter
+    populate_tsvector
   end
-
-  # In case we decide
-  # we want to update/delete ingredients
-  after_save    { self.update_recipe_counter }
-  after_destroy { self.update_recipe_counter }
 
   # Scopes
   scope :get_ingredient_ids_from, -> (array_of_strings) {
@@ -24,6 +20,10 @@ class Ingredient < ApplicationRecord
   }
   
   private
+
+  def populate_tsvector
+    Ingredient.where(id: id).update_all("tsv_name=setweight(to_tsvector(coalesce(name,'')), 'A')")
+  end
 
   def check_if_optional
     update_attribute(:optional, true) if name.match(/optionnel/)
