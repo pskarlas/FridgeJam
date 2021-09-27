@@ -14,20 +14,26 @@ class Recipe < ApplicationRecord
   # Scopes
   scope :search_by_ingredients, -> (ingredients_array, people, max_time) {
     querable_array = ingredients_array.map { |val| "%#{val}%" }
-    ingredient_ids = Ingredient.where('ingredients.name ILIKE ANY (array[?])', querable_array).pluck(:id)
-    joins(:ingredients)
-      .where('ingredients.optional = false
-              AND ingredients.id IN (?)
-              AND recipes.people_quantity >= ?
-              AND CAST(recipes.total_time AS INT) <= ?',
-              ingredient_ids, people, max_time)
-      .group('recipes.id')
-      .having('COUNT(ingredients.id) = recipes.mandatory_ingredients_count')
+
+    Recipe.find_by_sql(["
+      SELECT r.* FROM recipes r
+      INNER JOIN (
+                  SELECT ingredients.id, ingredients.recipe_id
+                  FROM ingredients
+                  WHERE ingredients.id IN (SELECT ingredients.id FROM ingredients
+                                          WHERE (ingredients.name ILIKE ANY (array[?])) AND ingredients.optional = false)
+                        ) q_1 ON r.id = q_1.recipe_id
+                  WHERE r.people_quantity >= ? AND CAST(r.total_time AS int) <= ?
+                  GROUP BY r.id
+                  HAVING COUNT(q_1.id) = r.mandatory_ingredients_count
+    ", querable_array, people, max_time])
   }
 
   def import_actions
     self.slug = name.parameterize
     self.total_time = calculate_ttl_cook_time(self.total_time)
   end
+
+
 
 end
