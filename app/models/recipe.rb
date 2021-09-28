@@ -28,7 +28,11 @@ class Recipe < ApplicationRecord
         SELECT ingredients.id, ingredients.recipe_id
         FROM ingredients
         WHERE ingredients.id IN (SELECT ingredients.id FROM ingredients
+<<<<<<< HEAD
                                  WHERE (#{ingredients_string_clause}) AND ingredients.optional = false)
+=======
+                                 WHERE (#{ingredients_string_clause.strip}) AND ingredients.optional = false)
+>>>>>>> 43b3215151fc7b4bda7ffbc0184fdcc4e35e6127
       ) q_1 ON r.id = q_1.recipe_id
       WHERE r.people_quantity >= ? AND CAST(r.total_time AS int) <= ?
       GROUP BY r.id
