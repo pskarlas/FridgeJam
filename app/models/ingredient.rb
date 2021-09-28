@@ -22,7 +22,7 @@ class Ingredient < ApplicationRecord
   private
 
   def populate_tsvector
-    Ingredient.where(id: id).update_all("tsv_name=setweight(to_tsvector(coalesce(name,'')), 'A')")
+    Ingredient.where(id: id).update_all("tsv_name = to_tsvector('english', name)")
   end
 
   def check_if_optional
