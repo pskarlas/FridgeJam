@@ -28,13 +28,15 @@ class Recipe < ApplicationRecord
         SELECT ingredients.id, ingredients.recipe_id
         FROM ingredients
         WHERE ingredients.id IN (SELECT ingredients.id FROM ingredients
-                                 WHERE (#{ingredients_string_clause.strip}) AND ingredients.optional = false)
-                                ) q_1 ON r.id = q_1.recipe_id
+                                 WHERE (#{ingredients_string_clause}) AND ingredients.optional = false)
+      ) q_1 ON r.id = q_1.recipe_id
       WHERE r.people_quantity >= ? AND CAST(r.total_time AS int) <= ?
       GROUP BY r.id
       HAVING COUNT(q_1.id) = r.mandatory_ingredients_count
     ", people, max_time])
   }
+
+  private
 
   def import_actions
     self.slug = name.parameterize
