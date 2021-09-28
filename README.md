@@ -30,8 +30,9 @@ Check out 🍴 [FridgeJam] on Heroku.
 
 
 ## DB Schema (postgresql)
+![schema](https://user-images.githubusercontent.com/12958182/135047298-39afb171-8cda-4257-bb15-7c39c51fd6a6.png)
 
-![schemarb](https://user-images.githubusercontent.com/12958182/134682570-956bf8a7-0bee-40e1-9fd2-9b63445704c7.png)
+
 
 
 [//]: # (Reference links)
