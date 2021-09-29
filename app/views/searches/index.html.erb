@@ -9,7 +9,7 @@
     <% elsif @recipes.size.positive? %>
       <div  class="flex justify-between items-center">
         <h2 class="text-2xl font-bold text-gray-900">
-          <%= pluralize(@recipes_count, 'recipe', 'recipes').to_s + ' ' + 'found'%>
+          <%= pluralize(number_with_delimiter(@recipes_count, delimiter: "."), 'recipe', 'recipes').to_s + ' ' + 'found'%>
         </h2>
       </div>
       <div class="flow-root mt-10">
