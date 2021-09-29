@@ -11,7 +11,6 @@ class SearchesController < ApplicationController
                   .map{ |recipe| RecipeDecorator.new(recipe, view_context)}
       @recipes_count = @recipes.size
       @pagy, @recipes = pagy_array(@recipes, items: 10, size: [1, 2, 1, 1])
-
     else
       @top_recipes = top10_recipes.map{ |recipe| RecipeDecorator.new(recipe, view_context)}
       @pagy, @top_recipes = pagy_array(@top_recipes, items: 5, size: [1, 2, 1, 1])

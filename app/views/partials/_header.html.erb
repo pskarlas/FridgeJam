@@ -12,23 +12,23 @@
     </div>
     <div class="w-full max-w-lg">
       <%= form_tag(searches_path, method: :get, id: "searchForm")  do %>
-        <label for="search" class="sr-only">Recipe search</label>
-        <p class="mb-2 text-sm text-white font-medium">
-          Write the ingredients comma seperated e.g. orange, porc
-        </p>
+        <label for="query" class="mb-2 text-sm text-white font-medium sr-only">Recipe search</label>
+
         <div class="relative flex flex-col items-start justify-start space-y-2">
-          <%= text_area_tag :query, params[:query], class: 'mb-2 w-full shadow focus:ring-orange-500 focus:border-orange-500 block w-full pl-4 sm:text-sm border-gray-300 rounded-md py-4', :rows => 5, required: true, style: "resize: none;" %>
+          <%= text_area_tag :query, params[:query], class: 'mb-2 w-full shadow focus:ring-orange-500 focus:border-orange-500 block w-full pl-4 sm:text-sm border-gray-300 rounded-md py-4', :rows => 5, required: true, style: "resize: none;", placeholder: "Write the ingredients comma seperated e.g. orange, porc
+
+" %>
           <div class="inline-flex space-x-2 justify-start w-full items-center">
              <%= check_box_tag :flexible, true, true, class: 'focus:ring-sky-500 h-4 w-4 text-sky-500 border-orange-300 rounded' %>
-             <%= label_tag :flexible, "I\'m flexible with ingredients", class: "text-white text-sm font-semibold", style: 'text-shadow: 0 0 1px #ffffff;' %>
+             <%= label_tag :flexible, "Recipes with more or less ingredients are fine", class: "text-white text-sm font-semibold", style: 'text-shadow: 0 0 1px #ffffff;' %>
           </div>
           <div class="pt-2 w-full flex space-x-4">
             <div class="w-full">
-            <%= label_tag :people, 'Min people', class: "text-white text-sm font-semibold" %>
+            <%= label_tag :people, 'Min people', class: "inline-block mb-1.5 text-white text-sm font-semibold" %>
             <%= select_tag :people, raw("<option value='0'>I dont' care</option><option value='2'>2 people</option><option value='4'>4 people</option><option value='6'>6 people</option>"), class: 'block w-full py-3 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md' %>
             </div>
             <div class="w-full">
-            <%= label_tag :total_time, 'Max recipe time', class: "text-white text-sm font-semibold" %>
+            <%= label_tag :total_time, 'Max recipe time', class: "inline-block mb-1.5 text-white text-sm font-semibold" %>
             <%= select_tag :total_time, raw("<option value='20000'>I don't care</option><option value='30'>30mins</option><option value='60'>60 mins</option><option value='120'>2 hours</option><option value='180'>3 hours</option>"), class: 'block w-full py-3 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md' %>
             </div>
           </div>
