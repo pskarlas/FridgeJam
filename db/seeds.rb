@@ -1,6 +1,6 @@
 include RecipeImportHelper
 
-IO.foreach('./lib/assets/recipes/recipes.json').first(100)
+IO.foreach('./lib/assets/recipes/recipes.json')
   .map {|raw_line| JSON.parse(raw_line)}
   .each do |recipe_hash|
     recipe = find_or_create_recipe(recipe_hash)
