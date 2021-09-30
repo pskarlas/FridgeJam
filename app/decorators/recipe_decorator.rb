@@ -26,7 +26,7 @@ class RecipeDecorator
         'no rating'
       end
     else
-      view_context.content_tag :span, class: 'border-2 border-sky-100 rounded-lg px-3 py-1.5 max-w-2xl text-sm text-blue-500 flex items-center font-bold' do
+      view_context.content_tag :span, class: 'border-2 border-sky-100 rounded-lg px-3 py-1.5 max-w-2xl text-sm text-sky-500 flex items-center font-bold' do
         @recipe.rate.to_s
       end
     end
@@ -39,7 +39,7 @@ class RecipeDecorator
     when 'facile'
       view_context.content_tag(:span, 'facile', class: 'inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-gray-100 text-gray-800')
     when 'Niveau moyen'
-      view_context.content_tag(:span, 'Niveau moyen', class: 'inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-blue-100 text-blue-800')
+      view_context.content_tag(:span, 'Niveau moyen', class: 'inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-sky-100 text-sky-800')
     when 'difficile'
       view_context.content_tag(:span, 'difficile', class: 'inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-pink-100 text-pink-800')
     end
